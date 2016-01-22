@@ -1,0 +1,48 @@
+<!DOCTYPE HTML5>
+<html>
+    <head>
+        <link href="css/picker.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="js/picker.js"></script>
+    </head>
+    <body>
+
+        <center>
+            <div style="margin: 4rem;">
+                <input type="text" name="date" style="width: 300px;" placeholder="select date" /><br><br>
+                <input type="text" name="time" style="width: 300px;" placeholder="select time" />
+            </div>
+        </center>
+
+        <div id="time"></div>
+        <div id="date"></div>
+
+        <script type="text/javascript">
+
+            picker.date.init({
+                element: 'date',
+                callback: function(date) {
+                    document.getElementsByTagName('input')[0].value = date;
+                    picker.date.hide();
+                }
+            }).build();
+
+            picker.time.init({
+                element: 'time',
+                callback: function(time) {
+                    document.getElementsByTagName('input')[1].value = time.hour + ':' + time.minute + ' ' + time.ampm;
+                    picker.time.hide();
+                }
+            }).build();
+
+            document.getElementsByTagName('input')[0].addEventListener('click', function() {
+                picker.date.show();
+            }, false);
+
+            document.getElementsByTagName('input')[1].addEventListener('click', function() {
+                picker.time.show();
+            }, false);
+
+        </script>
+
+    </body>
+</html>
